@@ -19,6 +19,13 @@ for file in ./*.csv;do
         #fcol is used to get the column number of the particular exam
         fcol=$(awk -F ',' 'NR==1 {for(i=1;i<=NF;i++) if($i=="'$fname'") print i}' main.csv)
 
+        #need to add absent for previous exams when a new name is being added
+        abs=$(
+            for (( i = 0; i < $fcol-3; i++ )); do
+                echo ",a"
+            done
+        )
+
         while IFS="," read -r first second third || [ -n "$first" ]; 
         do
             rollno="$first"
@@ -30,8 +37,8 @@ for file in ./*.csv;do
                     #Checks for line starting with the particular roll number and replaces ending of that line with marks
                     sed -i "/^$rollno,/ s/$/,$marks/" main.csv
 
-                    #adding name and roll number to the list if it wasn't previously present
-                    else echo "$rollno,$name,$marks">>main.csv
+                    #adding name and roll number to the list if it wasn't previously present and marking absent by using $abs
+                    else echo "$rollno,$name$abs,$marks">>main.csv
                 fi
             fi
             
@@ -41,7 +48,6 @@ for file in ./*.csv;do
             if [ ${#fields[@]} -lt $fcol ];then
             #no of elements are less means the last element is missing which has to be a
               absrollno=${fields[0]}
-              echo $absrollno
               sed -i "/^$absrollno,/ s/$/,a/" main.csv
             fi
         done < "main.csv"
