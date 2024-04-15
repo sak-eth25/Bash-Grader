@@ -1,5 +1,9 @@
 #!/bin/bash
 
+ #checking if total is already present
+    totpre=0
+    totpre=$(awk -F ',' 'NR==1 {i=NF;if($i=="Total")  print"1"}' main.csv)
+
 #Create main.csv
 touch main.csv
 echo "Roll_Number,Name" > main.csv
@@ -50,4 +54,10 @@ for file in ./*.csv;do
             fi
         done < "main.csv"
     fi
+
+
 done
+
+if [ "$totpre" == "1" ]; then
+    bash submission.sh total
+fi

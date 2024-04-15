@@ -37,6 +37,7 @@ if [ "$1" == "total" ]; then
     fi
 
     cp main.csv temp.csv
+    #total.awk has an awk script to do total and add it to the line
     awk -f total.awk temp.csv > main.csv
     rm temp.csv
    
