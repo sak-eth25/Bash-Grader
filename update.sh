@@ -1,6 +1,8 @@
 #!/bin/bash
 
 read -p "Roll Number of the student whose marks need to be chaged:" rollno
+read -p "Name of the student:" name
+
 
 #Looping through all the csv files
 for file in ./*.csv;do
@@ -18,11 +20,22 @@ for file in ./*.csv;do
     fi
 
 
-    #if the marks are present rollno_found would be 1 and then we can change the file
+
     if [ "$rollno_found" == "1" ];then
+
+        #if the marks are present rollno_found would be 1 and then we can change the file
         read -p "Marks in $fname:" updmarks
         #change the marks of that roll no in the file of that exam
         sed  -Ei "/^$rollno,/s/([A-Za-z0-9]+,)(.*,).*/\1\2$updmarks/" "$file" 
+
+    else
+        #if the marks are not present then they can be added or not depending on the input
+        read -p "Marks in $fname (Enter -1 if not applicable):" updmarks
+
+        if [ "$updmarks" -ne "-1" ]; then
+            echo "$rollno,$name,$updmarks">>$file
+        fi
+
     fi
 
 
