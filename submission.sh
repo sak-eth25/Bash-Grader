@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #---------------------------------COMBINE---------------------------------#
+# Check if the first command-line argument is "combine"
 if [ "$1" == "combine" ]; then
     bash combine.sh
 fi
@@ -50,7 +51,21 @@ fi
 
 
 #---------------------------------UPDATE---------------------------------#
+# Check if the first command-line argument is "update"
 if [ "$1" == "update" ]; then
     bash update.sh
 fi
 
+
+#---------------------------------GRAPHS---------------------------------#
+# Check if the first command-line argument is "graph"
+if [ "$1" == "graph" ]; then
+    python3 graphs.py
+fi
+
+
+#---------------------------------STATS---------------------------------#
+# Check if the first command-line argument is "stats"
+if [ "$1" == "stats" ]; then
+    python3 stats.py
+fi
