@@ -57,6 +57,40 @@ if [ "$1" == "update" ]; then
 fi
 
 
+#---------------------------------GIT_INIT---------------------------------#
+# Check if the first command-line argument is "git_init"
+if [ "$1" == "git_init" ]; then
+    bash gitinit.sh $2
+fi
+
+#---------------------------------GIT_COMMIT---------------------------------#
+# Check if the first command-line argument is "git_commit"
+if [ "$1" == "git_commit" ] & [ "$2" == "-m" ]; then
+    bash gitcommit.sh $3
+fi
+
+#---------------------------------GIT_CHECKOUT---------------------------------#
+# Check if the first command-line argument is "git_checkout"
+if [ "$1" == "git_commit" ] && [ "$2" == "-m" ]; then
+    bash gitcommit.sh "$3"
+fi
+if [ "$1" == "git_commit" ] && [ "$2" != "-m" ]; then
+    echo "bash submission.sh git_commit -m "Commit Message""
+fi
+
+#---------------------------------GIT_LOG---------------------------------#
+# Check if the first command-line argument is "git_log" and print the log file
+if [ "$1" == "git_log" ]; then
+    cat ~/.bggit/.stor/log
+fi
+
+#---------------------------------GIT_CLEAN---------------------------------#
+# Check if the first command-line argument is "git_clean" to delete .bggit directory
+if [ "$1" == "git_clean" ]; then
+    rm -r ~/.bggit
+    echo "git removed"
+fi
+
 #---------------------------------GRAPHS---------------------------------#
 # Check if the first command-line argument is "graph"
 if [ "$1" == "graph" ]; then

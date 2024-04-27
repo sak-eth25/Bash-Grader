@@ -28,7 +28,8 @@ for file in ./*.csv;do
                 echo -n ",a"
             done
         )
-        while IFS="," read -r first second third || [ -n "$first" ]; 
+        while IFS="," read -r first second third || [ -n "$first" ];
+        #Reading all the lines of the csv file until first is empty
         do
             rollno="$first"
             name="$second"
@@ -59,5 +60,6 @@ for file in ./*.csv;do
 done
 
 if [ "$totpre" == "1" ]; then
+    #Do total if totpre is 1
     bash submission.sh total
 fi
