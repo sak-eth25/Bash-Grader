@@ -14,7 +14,7 @@ fi
 
 
 #Print the files that are modified
-diff -qr . "$REMOTE_REPO" | awk -v repo="$REMOTE_REPO" '/^Only in .:/ {print "Removed:", $3} /^Only in "repo":/ {print "Added:", $3} /^Files .* differ$/ {print "Modified:", $2}'
+diff -qr . "$REMOTE_REPO" | awk -v repo="$REMOTE_REPO" '/^Only in .:/ {print "Removed:", $4} /^Only in "repo":/ {print "Added:", $4} /^Files .* differ$/ {print "Modified:", $2}'
 
 
 # Create a folder with a random name in ~/.bggit/.stor
