@@ -68,14 +68,14 @@ fi
 if [ "$1" == "git_commit" ] & [ "$2" == "-m" ]; then
     bash gitcommit.sh $3
 fi
+if [ "$1" == "git_commit" ] && [ "$2" != "-m" ]; then
+    echo "bash submission.sh git_commit -m "Commit Message""
+fi
 
 #---------------------------------GIT_CHECKOUT---------------------------------#
 # Check if the first command-line argument is "git_checkout"
-if [ "$1" == "git_commit" ] && [ "$2" == "-m" ]; then
-    bash gitcommit.sh "$3"
-fi
-if [ "$1" == "git_commit" ] && [ "$2" != "-m" ]; then
-    echo "bash submission.sh git_commit -m "Commit Message""
+if [ "$1" == "git_checkout" ] ; then
+    bash gitcheckout.sh "$2"
 fi
 
 #---------------------------------GIT_LOG---------------------------------#
@@ -102,4 +102,11 @@ fi
 # Check if the first command-line argument is "stats"
 if [ "$1" == "stats" ]; then
     python3 stats.py
+fi
+
+
+#---------------------------------STUDENTMARKS---------------------------------#
+# Check if the first command-line argument is "studentmarks"
+if [ "$1" == "studentmarks" ]; then
+    bash studentmarks.sh $2
 fi

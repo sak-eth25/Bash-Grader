@@ -24,12 +24,13 @@ for file in ./*.csv;do
     if [ "$rollno_found" == "1" ];then
 
         #if the marks are present rollno_found would be 1 and then we can change the file
-        read -p "Marks in $fname(Enter -1 to remove marks of $rollno in $fname):" updmarks
-        if [ "$updmarks" -ne "-1" ]; then
+        read -p "Marks in $fname(Enter -1 to remove marks of $rollno in $fname and -2 to not change):" updmarks
+        if [ "$updmarks" -eq "-1" ]; then
             #change the marks of that roll no in the file of that exam
-            sed  -Ei "/^$rollno,/s/([A-Za-z0-9]+,)(.*,).*/\1\2$updmarks/" "$file"
-            else
             sed  -Ei "/^$rollno,/d" "$file"
+        elif [ "$updmarks" -eq "-2" ]; then
+            break
+        else sed  -Ei "/^$rollno,/s/([A-Za-z0-9]+,)(.*,).*/\1\2$updmarks/" "$file"
         fi 
 
     else

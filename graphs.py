@@ -1,9 +1,8 @@
-import csv
 import numpy as np
 import matplotlib.pyplot as plt
 import os
 import random
-
+import csv
 
 #function to get marks of a student in a particular exam as a dictionary
 def marks(filename):

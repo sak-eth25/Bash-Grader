@@ -28,8 +28,8 @@ for file in main.csv; do
     marks=$(grep $roll_number, $file | rev | cut -d',' -f1 | rev)
         if [ -n "$marks" ]; then
             echo "Total marks for roll number $roll_number: $marks"
+            i=1
         fi
-        i=1
 done
 
 #if marks are not found, print a message

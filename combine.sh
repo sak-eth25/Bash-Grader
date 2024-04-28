@@ -1,8 +1,10 @@
 #!/bin/bash
-
- #checking if total is already present
-    totpre=0
+  totpre=0
+if [ -f main.csv ]; then
+     #checking if total is already present
+  
     totpre=$(awk -F ',' 'NR==1 {i=NF;if($i=="Total")  print"1"}' main.csv)
+fi
 
 #Create main.csv
 touch main.csv
